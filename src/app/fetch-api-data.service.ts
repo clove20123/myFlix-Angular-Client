@@ -6,6 +6,15 @@ import { map } from 'rxjs/operators';
 
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://my-movie-api-20123.herokuapp.com/';
+
+const token = localStorage.getItem('token');
+
+const headers = {
+  headers: new HttpHeaders({
+    Authorization: 'Bearer ' + token,
+  }),
+};
+
 @Injectable({
   providedIn: 'root'
 })
