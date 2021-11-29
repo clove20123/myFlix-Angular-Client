@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button class="hamburger" (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm="true">
+      <mat-icon>menu</mat-icon>
+    </button>
+   
+    <span id="divider"></span>
+    <div fxShow="true" fxHide.lt-md="true" class="menu-buttons">
+      <button mat-button (click)="logOut()" color="warn">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+      <button mat-button (click)="toProfile()" color="basic">
+        <mat-icon>people</mat-icon>
+      </button>
+      <mat-divider vertical="true" style="height:auto"></mat-divider>
+      <button mat-button (click)="toMovies()" color="basic">Movies</button>
+    </div>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<!--mobile navigation-->
+<mat-sidenav-container fxShow="true" fxHide.gt-sm="true" fxFlexFill class="example-container">
+  <mat-sidenav #sidenav>
+    <div fxLayout="column">
+      <a (click)="toMovies()" color="basic">Movies</a>
+      <a (click)="toProfile()" color="basic">Profile</a>
+      <a (click)="logOut()" color="basic">Logout</a>
+      <a (click)="sidenav.toggle()">Close</a>
+      </div>
