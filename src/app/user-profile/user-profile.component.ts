@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  user: any = {};
-  favMovies: any = {};
+  @Input () user = { Username: '', Password: '', Email: '', BirthDate: '', FavoriteMovies: [] };
+  
   constructor(  public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  getFavMovies(): void {
+  /*getFavMovies(): void {
     let movies: any[] = [];
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       movies = res;
@@ -38,6 +38,6 @@ export class UserProfileComponent implements OnInit {
       });
     });
     return this.favMovies;
-  }
+  }*/
 
 }

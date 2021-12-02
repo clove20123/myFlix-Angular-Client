@@ -114,7 +114,7 @@ private handleError(error: HttpErrorResponse): any {
   }
 
   public getUser(username: any): Observable<any> {
-    const response = this.http.get(apiUrl + '/users/' + username, headers);
+    const response = this.http.get(apiUrl + 'users/' + username, headers);
     return response.pipe(
       map(this.extractResponseData),
       catchError(this.handleError)

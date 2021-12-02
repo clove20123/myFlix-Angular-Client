@@ -79,12 +79,26 @@ getMovies(): void {
     });
   }
 
-  addToFavs(movieId: string, title: string): void {
+  isFav(movieId: string): boolean {
+    return this.favMovies.includes(movieId);
+  }
+
+  testClick(): void {
+    this.snackBar.open("added to favs",
+    "ok",
+    {
+      duration: 2000,
+    }
+    );
+ 
+  }
+
+  addToFavs(username: string, movieId: string): void {
     this.fetchApiData
       .addToFav(this.user.Username, movieId)
       .subscribe((res: any) => {
         this.snackBar.open(
-          `${title} has been added to your favorite movies!`,
+          `has been added to your favorite movies!`,
           'Cool',
           {
             duration: 2000,
@@ -95,12 +109,12 @@ getMovies(): void {
     return this.getUserFavs();
   }
 
-  removeFromFavs(movieId: string, title: string): void {
+  removeFromFavs(username: string, movieId: string): void {
     this.fetchApiData
       .removeFromFav(this.user.Username, movieId)
       .subscribe((res: any) => {
         this.snackBar.open(
-          `${title} has been removed from your favorite movies`,
+          `has been removed from your favorite movies`,
           'Alright',
           {
             duration: 2000,
@@ -109,6 +123,29 @@ getMovies(): void {
         this.ngOnInit();
       });
     return this.getUserFavs();
+  }
+
+  onToggleFavoriteMovie(username: string, movieId: string): any {
+    if (this.isFav(movieId)) {
+      this.fetchApiData.removeFromFav(this.user.username, movieId).subscribe((res: any) => {
+        this.snackBar.open(`"${movieId}" removed from your Favorites list!`,
+          'OK', {
+          duration: 2000,
+        });
+      });
+
+      const index = this.favMovies.indexOf(movieId);
+      return this.favMovies.splice(index, 1);
+
+    } else {
+      this.fetchApiData.addToFav(this.user.username, movieId).subscribe((response: any) => {
+        this.snackBar.open(`"${movieId}" added to your Favorites list!`,
+          'OK', {
+          duration: 2000,
+        });
+      });
+    }
+    return this.favMovies.push(movieId);
   }
 
 
