@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  @Input () user = { Username: '', Password: '', Email: '', BirthDate: '', FavoriteMovies: [] };
+  @Input () user = { Username: '', Password: '', Email: '', BirthDate: '', FavoriteMovies: []};
+  FavoriteMovies: any = []; 
   
   constructor(  public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -27,17 +28,13 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  /*getFavMovies(): void {
-    let movies: any[] = [];
-    this.fetchApiData.getAllMovies().subscribe((res: any) => {
-      movies = res;
-      movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favMovies.push(movie);
-        }
-      });
+  getFavMovies(): void {
+
+    const user = localStorage.getItem('username');
+    this.fetchApiData.getUser(user).subscribe((res: any) => {
+
+      this.FavoriteMovies = res.FavoriteMovies
     });
-    return this.favMovies;
-  }*/
+  }
 
 }

@@ -132,17 +132,19 @@ private handleError(error: HttpErrorResponse): any {
     );
   }
 
-  public addToFav(username: string, movieId: string): Observable<any> {
+  public addToFav(movieId: string): Observable<any> {
+    const username = localStorage.getItem('username');
     const response = this.http.post(
-      apiUrl + 'users/' + username + 'favorites/' + movieId,
+      apiUrl + 'users/' + username + '/Movies/' + movieId, {}, 
       headers
     );
     return response.pipe(catchError(this.handleError));
   }
 
-  public removeFromFav(username: string, movieId: string): Observable<any> {
+  public removeFromFav(movieId: string): Observable<any> {
+    const username = localStorage.getItem('username');
     const response = this.http.delete(
-      apiUrl + 'users/' + username + 'favorites/' + movieId,
+      apiUrl + 'users/' + username + '/favorites/' + movieId, 
       headers
     );
     return response.pipe(catchError(this.handleError));

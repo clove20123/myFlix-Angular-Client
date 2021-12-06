@@ -17,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   user: any = {};
-  favMovies: any[] = this.user.FavoriteMovies;
+  favMovies: any[] = [];
   constructor( public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
@@ -93,9 +93,9 @@ getMovies(): void {
  
   }
 
-  addToFavs(username: string, movieId: string): void {
+  addToFavs(movieId: string): void {
     this.fetchApiData
-      .addToFav(this.user.Username, movieId)
+      .addToFav(movieId)
       .subscribe((res: any) => {
         this.snackBar.open(
           `has been added to your favorite movies!`,
@@ -109,9 +109,9 @@ getMovies(): void {
     return this.getUserFavs();
   }
 
-  removeFromFavs(username: string, movieId: string): void {
+  removeFromFavs(movieId: string): void {
     this.fetchApiData
-      .removeFromFav(this.user.Username, movieId)
+      .removeFromFav(movieId)
       .subscribe((res: any) => {
         this.snackBar.open(
           `has been removed from your favorite movies`,
@@ -125,9 +125,9 @@ getMovies(): void {
     return this.getUserFavs();
   }
 
-  onToggleFavoriteMovie(username: string, movieId: string): any {
+  onToggleFavoriteMovie(movieId: string): any {
     if (this.isFav(movieId)) {
-      this.fetchApiData.removeFromFav(this.user.username, movieId).subscribe((res: any) => {
+      this.fetchApiData.removeFromFav(movieId).subscribe((res: any) => {
         this.snackBar.open(`"${movieId}" removed from your Favorites list!`,
           'OK', {
           duration: 2000,
@@ -138,7 +138,7 @@ getMovies(): void {
       return this.favMovies.splice(index, 1);
 
     } else {
-      this.fetchApiData.addToFav(this.user.username, movieId).subscribe((response: any) => {
+      this.fetchApiData.addToFav(movieId).subscribe((response: any) => {
         this.snackBar.open(`"${movieId}" added to your Favorites list!`,
           'OK', {
           duration: 2000,

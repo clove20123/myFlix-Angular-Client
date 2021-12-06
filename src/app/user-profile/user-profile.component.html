@@ -11,7 +11,8 @@
       <p><b>Password: ********</b></p>
       <p><b>Email</b>: {{ user.Email }}</p>
       <p><b>Birth Date</b>: {{ user.BirthDate | date: "MM/dd/yyyy":"UTC" }}</p>
+    
     </mat-card-content>
-  
+    <p class="fave-style">{{user.FavoriteMovies && user.FavoriteMovies.join(', ')}}</p>
   </mat-card>
 </div>
