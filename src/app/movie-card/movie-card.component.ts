@@ -18,6 +18,15 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   user: any = {};
   favMovies: any[] = [];
+
+/**
+ * 
+ * @param fetchApiData 
+ * @param dialog 
+ * @param router 
+ * @param snackBar 
+ */
+
   constructor( public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
@@ -29,6 +38,10 @@ ngOnInit(): void {
   this.getUserFavs();
 }
 
+/**
+ * Get all movies
+ */
+
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -37,12 +50,25 @@ getMovies(): void {
     });
   }
 
+/**
+ * Opens modal with genre information
+ * @param name 
+ * @param description 
+ */
+
   openGenreDialog(name: string, description: string ): void {
     this.dialog.open(GenreCardComponent, {
       data : {name, description},
       width: '500px',
     });
   }
+
+/**
+ * Opens modal with director information
+ * @param name 
+ * @param bio 
+ * @param birthDate 
+ */
 
   openDirectorDialog(
     name: string,
@@ -59,6 +85,12 @@ getMovies(): void {
     });
   }
 
+/**
+ * Opens modal with description information
+ * @param title 
+ * @param description 
+ */
+
   openDescriptionDialog(
     title: string,
     description: string,
@@ -72,6 +104,10 @@ getMovies(): void {
     });
   }
 
+/**
+ * Get users favorite movies
+ */
+
   getUserFavs(): any {
     this.fetchApiData.getFavMovies(this.user.Username).subscribe((res: any) => {
       this.favMovies = res.Favorites;
@@ -79,19 +115,21 @@ getMovies(): void {
     });
   }
 
+/**
+ * Includes movieId in users list of favorties
+ * @param movieId 
+ * @returns 
+ */
+
   isFav(movieId: string): boolean {
     return this.favMovies.includes(movieId);
   }
 
-  testClick(): void {
-    this.snackBar.open("added to favs",
-    "ok",
-    {
-      duration: 2000,
-    }
-    );
- 
-  }
+/**
+ * Adds movie to users favorites
+ * @param movieId 
+ * @returns 
+ */
 
   addToFavs(movieId: string): void {
     this.fetchApiData
@@ -109,6 +147,12 @@ getMovies(): void {
     return this.getUserFavs();
   }
 
+/**
+ * Removes movie from users favorites
+ * @param movieId
+ * @returns 
+ */
+
   removeFromFavs(movieId: string): void {
     this.fetchApiData
       .removeFromFav(movieId)
@@ -124,6 +168,12 @@ getMovies(): void {
       });
     return this.getUserFavs();
   }
+
+/**
+ * Toggles mvoie from users favorite list
+ * @param movieId 
+ * @returns 
+ */
 
   onToggleFavoriteMovie(movieId: string): any {
     if (this.isFav(movieId)) {

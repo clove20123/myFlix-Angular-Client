@@ -21,6 +21,14 @@ export class LoginFormComponent implements OnInit {
    */
   @Input() userData = { Username: '', Password: '' };
 
+/**
+ * 
+ * @param fetchApiData 
+ * @param dialogRef 
+ * @param snackBar 
+ * @param router 
+ */
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<LoginFormComponent>,
@@ -30,7 +38,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
+/**
+ * login user
+ */ 
+
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
 

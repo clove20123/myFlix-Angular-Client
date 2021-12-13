@@ -12,6 +12,14 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
   @Input () user = { Username: '', Password: '', Email: '', BirthDate: '', FavoriteMovies: []};
   FavoriteMovies: any = []; 
+
+  /**
+   * 
+   * @param fetchApiData 
+   * @param snackBar 
+   * @param dialog 
+   * @param router 
+   */
   
   constructor(  public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -22,11 +30,19 @@ export class UserProfileComponent implements OnInit {
     this.getUser();
   }
 
+  /**
+   * Get user data
+   */
+
   getUser(): void {
     this.fetchApiData.getUser(localStorage.getItem('username')).subscribe((resp: any) => {
       this.user = resp;
     })
   }
+
+  /**
+   * Gets users favorite movies 
+   */
 
   getFavMovies(): void {
 

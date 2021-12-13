@@ -8,16 +8,29 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  /**
+   * 
+   * @param router 
+   */
+
   constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
+
+/**
+ * Takes you to profile view
+ */
 
   toProfile(): void {
     this.router.navigate(['/profile'])
       .then(success => console.log('navigation success?', success))
       .catch(console.error);
   }
+
+/**
+ * Takes you to movies view
+ */
 
   toMovies(): void {
     this.router.navigate(['/movies'])
@@ -30,6 +43,10 @@ export class NavbarComponent implements OnInit {
       .then(success => console.log('navigation success?', success))
       .catch(console.error);
   }
+
+  /**
+   * Logout
+   */
 
   logOut(): void {
     localStorage.removeItem('user');

@@ -6,7 +6,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './description-card.component.html',
   styleUrls: ['./description-card.component.scss']
 })
+
+
 export class DescriptionCardComponent implements OnInit {
+
+/**
+ * 
+ * @param data 
+ */
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
