@@ -158,10 +158,11 @@ private handleError(error: HttpErrorResponse): any {
     return response.pipe(catchError(this.handleError));
   }
 
-  public editUser(username: string, updatedInfo: object): Observable<any> {
+  public editUser(userData: any): Observable<any> {
+    const username = localStorage.getItem('user');
     const response = this.http.put(
       apiUrl + 'users/' + username,
-      updatedInfo,
+      userData,
       headers
     );
     return response.pipe(

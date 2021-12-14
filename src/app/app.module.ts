@@ -24,7 +24,9 @@ import { DescriptionCardComponent } from './description-card/description-card.co
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDividerModule } from '@angular/material/divider'
+import { MatDividerModule } from '@angular/material/divider';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -44,7 +46,9 @@ const appRoutes: Routes = [
     GenreCardComponent,
     UserProfileComponent,
     DescriptionCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileEditComponent,
+   
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -3,6 +3,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -50,6 +52,13 @@ export class UserProfileComponent implements OnInit {
     this.fetchApiData.getUser(user).subscribe((res: any) => {
 
       this.FavoriteMovies = res.FavoriteMovies
+    });
+  }
+
+  openEditProfileDialog(): void {
+    this.dialog.open(ProfileEditComponent, {
+      // Assigning the dialog a width
+      //width: '50%'
     });
   }
 

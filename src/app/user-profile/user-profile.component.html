@@ -14,5 +14,13 @@
     
     </mat-card-content>
     <p class="fave-style">{{user.FavoriteMovies && user.FavoriteMovies.join(', ')}}</p>
+    <button
+    class="float-right"
+    mat-raised-button
+    color="primary"
+    (click)="openEditProfileDialog()"
+  >
+    Edit
+  </button>
   </mat-card>
 </div>
