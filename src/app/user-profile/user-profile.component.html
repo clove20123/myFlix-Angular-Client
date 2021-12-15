@@ -13,7 +13,7 @@
       <p><b>Birth Date</b>: {{ user.BirthDate | date: "MM/dd/yyyy":"UTC" }}</p>
     
     </mat-card-content>
-    <p class="fave-style">{{user.FavoriteMovies && user.FavoriteMovies.join(', ')}}</p>
+    <p class="fave-style"><b>Favorite Movies: </b>{{user.FavoriteMovies && user.FavoriteMovies.join(', ')}}</p>
     <button
     class="float-right"
     mat-raised-button

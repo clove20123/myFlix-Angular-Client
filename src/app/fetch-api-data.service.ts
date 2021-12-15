@@ -159,7 +159,7 @@ private handleError(error: HttpErrorResponse): any {
   }
 
   public editUser(userData: any): Observable<any> {
-    const username = localStorage.getItem('user');
+    const username = localStorage.getItem('username');
     const response = this.http.put(
       apiUrl + 'users/' + username,
       userData,

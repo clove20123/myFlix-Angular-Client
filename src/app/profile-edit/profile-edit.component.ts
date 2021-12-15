@@ -30,7 +30,7 @@ export class ProfileEditComponent implements OnInit {
     this.fetchUserData.editUser(this.userData).subscribe(
       (res) => {
         this.dialogRef.close();
-        localStorage.setItem('user', res.Username);
+        localStorage.setItem('username', res.Username);
         this.snackBar.open('Profile updated successfully!', 'Ok', {
           duration: 2000,
         });
